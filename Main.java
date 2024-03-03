@@ -1,20 +1,62 @@
+import java.util.ArrayList;
 import java.util.Scanner;
-public class Main {
-  public static void main(String[] args) {
-    Scanner scan = new Scanner(System.in);
-    String input = scan.nextLine();
-    String[] arr = input.split(" ");
-    int x1 = Integer.parseInt(arr[0]);
-    int y1 = Integer.parseInt(arr[1]);
-    int x2 = Integer.parseInt(arr[2]);
-    int y2 = Integer.parseInt(arr[3]);
-    if ((x1 == x2 || y1 == y2 || Math.abs(x1 - x2) == Math.abs(y1 - y2)) || (x1 +1 == x2 && y1 +2 == y2 || x1+2 == x2 && y1 +1 == y2)){
-        System.out.println("YES");
-    } else {
-        System.out.println("NO");
-    }
 
-  }
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int input = scan.nextInt();
+        String inputs = scan.nextLine();
+        inputs = scan.nextLine();
+        String[] ints = inputs.split("");
+        boolean firsttime = true;
+        ArrayList<Integer> myArray = new ArrayList();
+        int counter = 0;
+        int perf = 0;
+        int gr = 0;
+        int miss = 0;
+        for(int i = 0; i < input; i++)
+        {
+            if(ints[i].equals("*"))
+            {
+                if(firsttime != true)
+                {
+                    counter++;
+                    myArray.add(counter);
+                }
+                perf++;
+                firsttime = false;
+            }
+            if(ints[i].equals("o"))
+            {
+                if(firsttime != true)
+                {
+                    counter++;
+                    myArray.add(counter);
+                }
+                firsttime = false;
+                gr++;
+            }
+            if(ints[i].equals("x"))
+            {
+                counter = 0;
+                firsttime = true;
+                miss++;
+            }
+        }
+
+        int sum = 0;
+        for(int i = 0; i < myArray.size(); i++)
+        {
+            sum += myArray.get(i);
+        }
+        perf *= 100;
+        gr *= 50;
+        System.out.println(perf + gr + sum);
+
+
+
+
+    }
 }
 
       
